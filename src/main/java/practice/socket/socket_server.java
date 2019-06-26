@@ -33,7 +33,7 @@ public class socket_server implements Runnable{
     public void run() {
         Socket socket = null;
         try{
-            while (null != (socket = serverSocket.accept())){
+            while ((socket = serverSocket.accept()) != null){
                 log.info("client{} connected", socket.getRemoteSocketAddress());
                 executorService.execute(new processor(socket));
 

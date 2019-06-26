@@ -23,14 +23,13 @@ public class socket_client {
                 //使用PrintWriter从socket写入字符串(写socket输出流)
                 pw = new PrintWriter(socket.getOutputStream(), true);
                 pw.println(cmd);
-                Thread.sleep(100L);
                 //使用BufferedReader从socket读取字符串(读socket输入流)
                 burd_first = new BufferedReader(new InputStreamReader((socket.getInputStream())));
                 String s = burd_first.readLine();
-                System.out.println(s);
                 if ("bye".equalsIgnoreCase(s)) {
                     break;
                 }
+                System.out.println(s);
             }
 
         }catch (Exception e){

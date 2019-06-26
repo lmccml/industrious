@@ -25,10 +25,12 @@ public class processor implements Runnable {
                 String s = br.readLine();
                 System.out.println(s + "{}" + socket.getRemoteSocketAddress());
                 pw = new PrintWriter(socket.getOutputStream(), true);
-                pw.write(s);
                 if ("bye".equalsIgnoreCase(s)) {
+                    pw.println(s);
                     break;
                 }
+                pw.println("hello,"+s);
+
             }
 
 
