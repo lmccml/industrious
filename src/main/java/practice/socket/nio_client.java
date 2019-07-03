@@ -25,7 +25,7 @@ public class nio_client {
             fc = new FileInputStream(new File("/users/lmc/Documents/test.txt")).getChannel();
             ByteBuffer buf = ByteBuffer.allocate(10240);
             int r = 0;
-            while ((r =fc.read(buf)) > 0) {
+            while ((r = fc.read(buf)) > 0) {
                 buf.flip();
                 while(buf.hasRemaining() && (r = sc.write(buf)) > 0 ) {
                     log.info("send msg to server!", r );
