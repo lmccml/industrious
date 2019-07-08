@@ -1,6 +1,10 @@
 package practice.spring;
 
 import lombok.Data;
+import org.springframework.context.annotation.Lazy;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 @Data
 public class java_bean_first {
@@ -12,4 +16,15 @@ public class java_bean_first {
         this.name = "test1";
         this.age = 26;
     }
+
+    @PostConstruct
+    public void postConstruct() {
+        System.out.println("this is a PostConstruct");
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        System.out.println("omg, im dead!");
+    }
+
 }
