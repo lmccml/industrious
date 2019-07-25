@@ -16,7 +16,6 @@ public class socket_client {
         try {
             socket = new Socket("127.0.0.1",9000);
 
-
             //写
             burd_second = new BufferedReader(new InputStreamReader(System.in));
             while ((cmd = burd_second.readLine()) != null){

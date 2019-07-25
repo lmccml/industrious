@@ -26,13 +26,13 @@ public class main_to_run {
         java_bean_dynamic java_bean_dynamic = (practice.spring.java_bean_dynamic)ctx.getBean("java_bean_dynamic");
         System.out.println(java_bean_dynamic.getId());
 
-        //java类和注解配置bean
+        //java类和注解配置bean，@ComponentScan自动装配需要通过注册AnnotationConfigApplicationContext获取上下文，xml写的配置则是通过ClassPathXmlApplicationContext加载的
         ApplicationContext context = new AnnotationConfigApplicationContext(main_to_run.class);
         java_bean_annotation java_bean_annotation = (java_bean_annotation)context.getBean("java_bean_annotation");
         System.out.println(java_bean_annotation.getId());
 
         //创建一个ApplicationEvent对象
-        LogEvent event = new LogEvent("hello", "This is a test");
+        log_event event = new log_event("hello", "This is a test");
         //主动触发该事件
         context.publishEvent(event);
         //这样才会去调用销毁前的执行方法

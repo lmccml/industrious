@@ -21,10 +21,10 @@ import org.springframework.stereotype.Component;
 public class application_listener_custom implements ApplicationListener {
     @Override
     public void onApplicationEvent(ApplicationEvent applicationEvent) {
-        if (applicationEvent instanceof LogEvent) {
-            LogEvent logEvent =  (LogEvent)applicationEvent;
-            System.out.println("日志内容：" + logEvent.getText());
-            System.out.println("日志时间戳：" + logEvent.getTimestamp());
+        if (applicationEvent instanceof log_event) {
+            log_event logevent =  (log_event)applicationEvent;
+            System.out.println("日志内容：" + logevent.getText());
+            System.out.println("日志时间戳：" + logevent.getTimestamp());
         }
 
     }
