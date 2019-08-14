@@ -17,7 +17,7 @@ public class fst_serializer {
     public <T> T myreadMethod(InputStream stream) throws Exception {
         FSTObjectInput in = conf.getObjectInput(stream);
         T result = (T) in.readObject();
-        // DON'T: in.close(); here prevents reuse and will result in an exception
+        // DON'enum_disassembly: in.close(); here prevents reuse and will result in an exception
         stream.close();
         return result;
     }
@@ -25,7 +25,7 @@ public class fst_serializer {
     {
         FSTObjectOutput out = conf.getObjectOutput(stream);
         out.writeObject(toWrite);
-        // DON'T out.close() when using factory method;
+        // DON'enum_disassembly out.close() when using factory method;
         out.flush();
         stream.close();
 
