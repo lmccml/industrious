@@ -13,20 +13,26 @@ import java.sql.*;
  */
 public class jdbc_test {
     public static void main(String[] args) throws Exception {
-
         Class.forName("com.mysql.cj.jdbc.Driver");
         String user = "root";
         String password = "test";
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&useSSL=false", user, password);
 
         //PreparedStatement：参数化查询，通过connection.preparedStatement(sql)得到，
-        // 如果数据哭支持的话，系统会对sql语句进行预编译。
+        // 如果数据库支持的话，系统会对sql语句进行预编译。
         // 预编译就是JDBC在创建prepared对象的时候就将sql语句发送给数据库进行编译。
         // 如果需要动态的发送sql语句时最好使用preparedStatement，好处哟亮点（1）提高效率（2）避免了sql注入。
         // 何为sql注入？就是将一个一条sql语句利用字符串拼接起来的形式，拼接的变量可能会导致sql语句改变原有的意思，也就是说会有恶意sql语法出现如下语句
         //String sql = "SELECT * FROM tb1_students WHERE name= '"+varname+"' and passwd='"+varpasswd+"'";
         PreparedStatement preparedStatement = con.prepareStatement("select * from user_info where id = ? ", 33);
         preparedStatement.execute();
+
+        //批处理，加入缓冲区，其参数开始序号从1开始
+        preparedStatement.setString(1, "1");
+        preparedStatement.addBatch();
+        preparedStatement.setString(1, "2");
+        preparedStatement.addBatch();
+        preparedStatement.executeBatch();
 
         //statement：系统只执行一次语句时，用statement来执行，因为如果使用preparedStatement对象系统会将sql语句进行预编译
 
