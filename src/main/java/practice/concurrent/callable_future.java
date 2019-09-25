@@ -1,7 +1,5 @@
 package practice.concurrent;
 
-import sun.jvm.hotspot.tools.ObjectHistogram;
-
 import java.util.concurrent.*;
 
 public class callable_future {
