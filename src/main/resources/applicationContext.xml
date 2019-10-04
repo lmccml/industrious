@@ -18,10 +18,10 @@
 
     <context:component-scan base-package="practice" />
 
-    <bean id = "java_bean_first" init-method="postConstruct" lazy-init="false" destroy-method="preDestroy"  class="practice.spring.java_bean_first" />
-    <bean id = "java_bean_second"  class="practice.spring.java_bean_second" />
+    <bean id = "java_bean_first" init-method="postConstruct" lazy-init="false" destroy-method="preDestroy"  class="spring.java_bean_first" />
+    <bean id = "java_bean_second"  class="spring.java_bean_second" />
 
-    <bean id = "application_context_aware_test"  class="practice.spring.application_context_aware_test" />
+    <bean id = "application_context_aware_test"  class="spring.application_context_aware_test" />
 
 
 
