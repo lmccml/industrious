@@ -1,0 +1,36 @@
+public class sqlUtils {
+
+    public static void main(String[] args) throws Exception {
+        sqlUtils.getSelectSQL();
+    }
+
+    /*
+    提取有效的数据库所有字段名
+     */
+    public static void getSelectSQL() throws Exception{
+        String host = "127.0.0.1";
+        String database = "halodb";
+        String user = "root";
+        String password = "*****";
+        String table = "logs";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection("jdbc:mysql://"+host+":3306/"+database+"?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&useSSL=false", user, password);
+        PreparedStatement pStemt = null;
+        pStemt = con.prepareStatement("select * from "+ table);
+        //结果集元数据
+        ResultSetMetaData rsmd = pStemt.getMetaData();
+        //表列数
+        int size = rsmd.getColumnCount();
+        String columnNames ="select";
+        for (int i = 0; i < size; i++) {
+            if(i == size-1){
+                columnNames +=" "+(rsmd.getColumnName(i + 1))+" from "+table;
+            }else {
+                columnNames +=" "+(rsmd.getColumnName(i + 1))+",";
+            }
+        }
+        System.out.println(columnNames);
+        pStemt.close();
+        con.close();
+    }
+}
