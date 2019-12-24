@@ -27,7 +27,7 @@ public class jdk_proxy implements InvocationHandler {
 
     public static void main(String[] args) throws Exception {
         Class<?> clazz = Class.forName("dynamic_proxy.service_demo_impl");
-        service_demo service_demo_proxy = (service_demo)Proxy.newProxyInstance(clazz.getClassLoader(), new Class<?>[] { practice.dynamic_proxy.service_demo.class} , new jdk_proxy());
+        service_demo service_demo_proxy = (service_demo)Proxy.newProxyInstance(clazz.getClassLoader(), new Class<?>[] { dynamic_proxy.service_demo.class} , new jdk_proxy());
         service_demo service_demo_proxy_second = (service_demo)Proxy.newProxyInstance(clazz.getClassLoader(), clazz.getInterfaces() , new jdk_proxy());
         service_demo_proxy.dosth();
         service_demo_proxy_second.dosth();

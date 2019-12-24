@@ -35,7 +35,7 @@ public class cglib_proxy implements MethodInterceptor {
         */
         eh.setSuperclass(service_demo_impl.class);
         eh.setCallback(new cglib_proxy());
-        service_demo_impl service_demo_impl = (practice.dynamic_proxy.service_demo_impl) eh.create();
+        service_demo_impl service_demo_impl = (dynamic_proxy.service_demo_impl) eh.create();
         service_demo_impl.dosth();
     }
 

@@ -1,6 +1,6 @@
 package reflection;
 
-import practice.class_loader.get_class_obj;
+import class_loader.get_class_obj;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

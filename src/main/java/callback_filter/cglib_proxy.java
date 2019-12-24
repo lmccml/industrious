@@ -2,8 +2,6 @@ package callback_filter;
 
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
-import practice.dynamic_proxy.service_demo_impl;
-
 import java.lang.reflect.Method;
 
 /*

@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>industrious</artifactId>
+    <artifactId>java-a2z</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>industrious</name>
-    <description>a practice for java</description>
+    <name>java-a2z</name>
+    <description>旧游无处不堪寻。无寻处，惟有少年心</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -105,6 +105,21 @@
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
             <version>3.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.marshalling</groupId>
+            <artifactId>jboss-marshalling</artifactId>
+            <version>1.4.11.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.2.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.1.0</version>
         </dependency>
 
 

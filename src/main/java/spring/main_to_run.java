@@ -23,7 +23,7 @@ public class main_to_run {
         DefaultListableBeanFactory dbf = (DefaultListableBeanFactory)ctx.getBeanFactory();
         bdb.addPropertyValue("id", 5);
         dbf.registerBeanDefinition("java_bean_dynamic", bdb.getRawBeanDefinition());
-        java_bean_dynamic java_bean_dynamic = (practice.spring.java_bean_dynamic)ctx.getBean("java_bean_dynamic");
+        java_bean_dynamic java_bean_dynamic = (spring.java_bean_dynamic)ctx.getBean("java_bean_dynamic");
         System.out.println(java_bean_dynamic.getId());
 
         //java类和注解配置bean，@ComponentScan自动装配需要通过注册AnnotationConfigApplicationContext获取上下文，xml写的配置则是通过ClassPathXmlApplicationContext加载的

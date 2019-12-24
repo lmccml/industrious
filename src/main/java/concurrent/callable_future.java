@@ -28,5 +28,11 @@ public class callable_future {
             }
         });
 
+        //原生执行方法
+        FutureTask<String> futureTask = new FutureTask<>(new call_task());
+        new Thread(futureTask).start();
+        String result = futureTask.get();
+        System.out.println(result);
+
     }
 }
