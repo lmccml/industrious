@@ -9,6 +9,9 @@ import java.util.concurrent.Callable;
 public class call_task implements Callable<String> {
     @Override
     public String call() throws Exception {
+        synchronized (this){
+            this.wait();
+        }
         System.out.println("to do something!");
         return "ok";
     }
