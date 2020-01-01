@@ -16,18 +16,16 @@ public class ReadWriteLockTest {
                         object.read();
                     }
                 }
-
                 ;
             }.start();
+
             for (int j = 0; j < 5; j++) {
                 new Thread() {
                     public void run() {
                         while (true) {
                             object.write(new Random().nextInt(10000));
                         }
-                    }
-
-                    ;
+                    };
                 }.start();
             }
         }
