@@ -21,8 +21,9 @@ public class nio_client {
             if(!sc.finishConnect()){
                 return;
             }
+            String project_path = System.getProperty("user.dir");
             //从文件中读取内容，并通过socket发送
-            fc = new FileInputStream(new File("/users/lmc/Documents/test.txt")).getChannel();
+            fc = new FileInputStream(new File("/file/test.txt")).getChannel();
             ByteBuffer buf = ByteBuffer.allocate(10240);
             int r = 0;
             while ((r = fc.read(buf)) > 0) {

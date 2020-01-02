@@ -16,7 +16,8 @@ public class socket_byte_client {
         try {
             socket = new Socket("127.0.0.1", 9000);
             bos = new BufferedOutputStream(socket.getOutputStream());
-            bis = new BufferedInputStream(new FileInputStream(new File("/users/lmc/Documents/test.txt")));
+            String project_path = System.getProperty("user.dir");
+            bis = new BufferedInputStream(new FileInputStream(new File(project_path + "/file/test.txt")));
             int t = bis.available(), r = 0;
             while ((r = bis.read(buf)) > 0) {
                 t -= r;
