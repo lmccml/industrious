@@ -28,13 +28,14 @@ public class cyclicbarrier_demo {
             public void run() {
                 //这是大家最后执行的方法
                 System.out.println("人到齐了，开会吧....");
+
             }
         });
 
-        for(int i = 0 ; i < 5 ; i++){
+        for(int i = 0 ; i < 10 ; i++){
             Thread tt = new CyclicBarrierThread();
             tt.start();
-            tt.interrupt();//它可以迅速中断被阻塞的线程，抛出一个InterruptedException，把线程从阻塞状态中解救出来
+
         }
     }
 

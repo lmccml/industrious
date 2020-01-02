@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+
+    <property name="FILE_LOG_PATTERN"
+              value="${FILE_LOG_PATTERN:-%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} : %m%n}" />
+
+    <property name="LOG_HOME" value="E:/logs/logback-demo" />
+
+    <!-- 同步控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.FileAppender">
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 异步控制台输出 -->
+    <!--    logback中异步日志的实现使用了ArrayBlockingQueue-->
+    <appender name="ASTDOUT" class="ch.qos.logback.core.AsyncAppenderBase">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>l024</queueSize>
+        <neverBlock>true</neverBlock>
+    </appender>
+
+
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/test.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${LOG_HOME}/spring-mvc-demo.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{80} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="jdbc.sqltiming" level="error" />
+    <logger name="jdbc.sqlonly" level="info" />
+    <logger name="jdbc.audit" level="error" />
+    <logger name="jdbc.connection" level="error" />
+    <logger name="jdbc.resultset" level="error" />
+    <logger name="jdbc.resultsettable" level="error" />
+
+    <logger name="test-log" additivity="false">
+        <level value="error"/>
+        <appender-ref ref= "STDOUT" />
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="ASTDOUT" />
+        //<appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>
