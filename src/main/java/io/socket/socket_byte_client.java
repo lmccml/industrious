@@ -1,4 +1,4 @@
-package socket;
+package io.socket;
 
 import lombok.extern.slf4j.Slf4j;
 

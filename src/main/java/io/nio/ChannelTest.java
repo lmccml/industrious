@@ -7,6 +7,7 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.InterruptibleChannel;
+import java.nio.file.StandardOpenOption;
 
 /**
  * @author lmc
@@ -55,6 +56,9 @@ public class ChannelTest {
 
         //RandomAccessFile类是一个专门读写文件的类，封装了基本的IO流，在读写文件内容方面比常规IO流更方便、更灵活。但也仅限于读写文件，无法像IO流一样，可以传输内存和网络中的数据。
         RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
+
+        FileChannel fileChannel = FileChannel.open(file.toPath(), StandardOpenOption.READ);
+
 
 
 

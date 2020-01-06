@@ -1,4 +1,4 @@
-package socket;
+package io.socket;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Slf4j
-public class socket_server implements Runnable{
+public class socket_byte_server implements Runnable{
     private ServerSocket serverSocket = null;
     private final ExecutorService executorService = Executors.newCachedThreadPool();
 
@@ -34,7 +34,7 @@ public class socket_server implements Runnable{
         try{
             while ((socket = serverSocket.accept()) != null){
                 log.info("client{} connected", socket.getRemoteSocketAddress());
-                executorService.execute(new processor(socket));
+                executorService.execute(new processor_byte(socket));
 
             }
         } catch (Exception e) {
@@ -45,7 +45,7 @@ public class socket_server implements Runnable{
     }
 
     public static void main(String[] args) {
-        socket_server socket_server = new socket_server();
+        socket_byte_server socket_server = new socket_byte_server();
         BufferedReader br = null;
         try {
             socket_server.start();
