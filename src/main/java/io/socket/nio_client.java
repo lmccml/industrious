@@ -5,9 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.InetSocketAddress;
+import java.net.SocketOption;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.SocketChannel;
+import java.util.Iterator;
+import java.util.Set;
 
 @Slf4j
 public class nio_client {
@@ -21,9 +24,15 @@ public class nio_client {
             if(!sc.finishConnect()){
                 return;
             }
+            Set<SocketOption<?>> socketOptions = sc.supportedOptions();
+            Iterator<SocketOption<?>> iterator = socketOptions.iterator();
+            while (iterator.hasNext()) {
+                SocketOption socketOption = (SocketOption)iterator.next();
+                System.out.println((socketOption.name()));
+            }
             String project_path = System.getProperty("user.dir");
             //从文件中读取内容，并通过socket发送
-            fc = new FileInputStream(new File("/file/test.txt")).getChannel();
+            fc = new FileInputStream(new File(project_path + "/file/test.txt")).getChannel();
             ByteBuffer buf = ByteBuffer.allocate(10240);
             int r = 0;
             while ((r = fc.read(buf)) > 0) {

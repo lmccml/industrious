@@ -16,7 +16,7 @@ public class socket_server implements Runnable{
 
     public void start() throws Exception{
         serverSocket = new ServerSocket(9000);
-        executorService.execute(this);
+        executorService.execute(new socket_server());
     }
     public void close(){
         if(serverSocket != null && !serverSocket.isClosed()){

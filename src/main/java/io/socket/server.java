@@ -22,6 +22,9 @@ public class server {
         //必须使用数组（或其他数据结构）保存当前accept创建的socket，否则下次新的socket建立后，当前的socket将不受控制。
         while (true) {
             Socket socket = serverSocket.accept();
+            //Nagle算法,缓存数据包算法，实时还是等待一定量再发送
+            System.out.println(socket.getTcpNoDelay());
+            socket.setTcpNoDelay(true);
             System.out.println(socket.hashCode());
             InputStreamReader reader = new InputStreamReader(socket.getInputStream());
             char[] buf = new char[1024];

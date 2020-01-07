@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.net.InetSocketAddress;
+import java.net.SocketOption;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.util.Iterator;
@@ -26,6 +27,16 @@ public class nio_server implements Runnable{
         ssc.configureBlocking(false);
         //多次注册会覆盖
         ssc.register(selector, SelectionKey.OP_ACCEPT);
+        //ServerSocketChannel的Operation Set只能是OP_ACCEPT，其它的会报错
+        //ssc.register(selector, SelectionKey.OP_ACCEPT | SelectionKey.OP_READ);
+        //通道支持什么， SocketOption就只能设置什么，设置其他的SocketOption就会出现异常
+        Set<SocketOption<?>> socketOptions = ssc.supportedOptions();
+        Iterator<SocketOption<?>> iterator = socketOptions.iterator();
+        while (iterator.hasNext()) {
+            SocketOption socketOption = (SocketOption)iterator.next();
+            System.out.println((socketOption.name()));
+        }
+
         thread.start();
 
     }
@@ -70,7 +81,9 @@ public class nio_server implements Runnable{
                 //服务端使用非阻塞模式
                 sc.configureBlocking(false);
                 //在新建立的socket通道上注册可读事件。因为在没有读完数据前，不会向客户端返回应答，此外，为每个新建立的连接都会创建一个缓冲区，并作为附件到SelectionKey方便调用
+                //SocketChannel的Operation Set只能是OP_CONNECT、OP_WRITE和OP_READ，如果在注册的时候添加了OP_ACCEPT同样会报异常。
                 sc.register(key.selector(), SelectionKey.OP_READ, ByteBuffer.allocate(10240));
+                //这个巧妙之处在于，selectors在if(it.hasNext()){}下一次循环寻找这个新创建的sc = ssc.accept()的SocketChannel，才会触发key.isReadable()
             }
 
         } catch (IOException e) {
@@ -87,7 +100,8 @@ public class nio_server implements Runnable{
         FileChannel fc = null;
         try {
             InetSocketAddress isa = (InetSocketAddress) sc.getRemoteAddress();
-            fc = new FileOutputStream(new File(String.format("/users/lmc/Documents/test_result.txt", isa.getPort()))).getChannel();
+            String project_path = System.getProperty("user.dir");
+            fc = new FileOutputStream(new File(String.format(project_path + "/file/test_receive.txt", isa.getPort()))).getChannel();
             int r = 0;
             buf.clear();
             while ((r = sc.read(buf)) > 0) {

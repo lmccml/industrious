@@ -11,7 +11,7 @@ import java.net.Socket;
  */
 public class client {
     public static void main(String[] args) throws Exception{
-        for(int i = 0; i < 1; i++) {
+        for(int i = 0; i < 10; i++) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {

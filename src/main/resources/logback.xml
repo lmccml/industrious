@@ -15,11 +15,11 @@
 
     <!-- 异步控制台输出 -->
     <!--    logback中异步日志的实现使用了ArrayBlockingQueue-->
-    <appender name="ASTDOUT" class="ch.qos.logback.core.AsyncAppenderBase">
-        <discardingThreshold>0</discardingThreshold>
-        <queueSize>l024</queueSize>
-        <neverBlock>true</neverBlock>
-    </appender>
+<!--    <appender name="ASTDOUT" class="ch.qos.logback.core.AsyncAppenderBase">-->
+<!--        <discardingThreshold>0</discardingThreshold>-->
+<!--        <queueSize>l024</queueSize>-->
+<!--        <neverBlock>true</neverBlock>-->
+<!--    </appender>-->
 
 
 
@@ -49,8 +49,8 @@
     </logger>
 
     <root level="info">
-        <appender-ref ref="ASTDOUT" />
-        //<appender-ref ref="STDOUT" />
-        <appender-ref ref="FILE" />
+<!--        <appender-ref ref="ASTDOUT" />-->
+        <appender-ref ref="STDOUT" />
+<!--        <appender-ref ref="FILE" />-->
     </root>
 </configuration>

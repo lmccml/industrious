@@ -1,0 +1,3 @@
+我要写入文件d
+edefe
+defef
