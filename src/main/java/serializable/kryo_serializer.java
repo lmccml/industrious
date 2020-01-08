@@ -16,12 +16,12 @@ public class kryo_serializer {
 
         //写入
         Kryo kryo = new Kryo();
-        Output output = new Output(new FileOutputStream("./test.bin"));
+        Output output = new Output(new FileOutputStream("./file/test.bin"));
         kryo.writeObject(output, test_class);
         output.close();
 
         //读取
-        Input input = new Input(new FileInputStream("./test.bin"));
+        Input input = new Input(new FileInputStream("./file/test.bin"));
         test_class test_class_out = kryo.readObject(input, test_class.class);
         input.close();
 

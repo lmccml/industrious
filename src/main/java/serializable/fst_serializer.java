@@ -33,11 +33,11 @@ public class fst_serializer {
     public static void main(String[] args) throws Exception {
         test_class test_class = new test_class();
         fst_serializer fst_serializer = new fst_serializer();
-        OutputStream output = new FileOutputStream("./test.bin");
+        OutputStream output = new FileOutputStream("./file/test.bin");
         fst_serializer.mywriteMethod(output, test_class);
         output.close();
 
-        InputStream input = new FileInputStream("./test.bin");
+        InputStream input = new FileInputStream("./file/test.bin");
         test_class result = fst_serializer.myreadMethod(input);
         System.out.println(result.getName());
 
