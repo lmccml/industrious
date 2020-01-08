@@ -41,7 +41,7 @@ public class BigFileServer {
                 }
                 if(selectionKey.isValid() && selectionKey.isWritable()) {
                     SocketChannel socketChannel = (SocketChannel) selectionKey.channel();
-                    FileInputStream fileInputStream = new FileInputStream(Paths.get("H:\\kali\\kali-flat.vmdk").toFile());
+                    FileInputStream fileInputStream = new FileInputStream(Paths.get("E:\\node-three\\node-three.vmdk").toFile());
                     FileChannel fileChannel = fileInputStream.getChannel();
                     ByteBuffer byteBuffer = ByteBuffer.allocate(524288000);
                     while (fileChannel.position() < fileChannel.size()) {
