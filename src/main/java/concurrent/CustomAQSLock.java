@@ -74,21 +74,25 @@ public class CustomAQSLock implements Lock {
 
     private final Sync sync = new Sync();
 
+    @Override
     public void lock()
     {
         sync.acquire(1);
     }
 
+    @Override
     public boolean tryLock()
     {
         return sync.tryAcquire(1);
     }
 
+    @Override
     public void unlock()
     {
         sync.release(1);
     }
 
+    @Override
     public Condition newCondition()
     {
         return sync.newCondition();
@@ -104,11 +108,13 @@ public class CustomAQSLock implements Lock {
         return sync.hasQueuedThreads();
     }
 
+    @Override
     public void lockInterruptibly() throws InterruptedException
     {
         sync.acquireInterruptibly(1);
     }
 
+    @Override
     public boolean tryLock(long timeout, TimeUnit unit) throws InterruptedException
     {
         return sync.tryAcquireNanos(1, unit.toNanos(timeout));

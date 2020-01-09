@@ -5,6 +5,7 @@ import java.io.*;
 
 //https://www.cnblogs.com/chy18883701161/p/10928229.html
 public class custom_serializable implements Serializable {
+    private static final long serialVersionUID = -5836846270535785031L;
     private int id;
     private String name;
     private String password;
@@ -51,13 +52,13 @@ public class custom_serializable implements Serializable {
         custom_serializable custom_serializable = new custom_serializable(1,"张三","1234");
 
         //序列化
-        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("./obj.txt"));
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("./file/obj.txt"));
         //调用我们自定义的writeObject()方法
         out.writeObject(custom_serializable);
         out.close();
 
         //反序列化
-        ObjectInputStream in = new ObjectInputStream(new FileInputStream("./obj.txt"));
+        ObjectInputStream in = new ObjectInputStream(new FileInputStream("./file/obj.txt"));
         //调用自定义的readObject()方法
         custom_serializable user = (custom_serializable) in.readObject();   //写掉了一句   in.close()
 
