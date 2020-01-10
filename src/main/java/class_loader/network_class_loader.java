@@ -12,6 +12,7 @@ public class network_class_loader extends ClassLoader {
 		this.rootUrl = rootUrl;
 	}
 
+	@Override
 	protected Class<?> findClass(String name) throws ClassNotFoundException {
 		byte[] classData = getClassData(name);
 		if (classData == null) {
