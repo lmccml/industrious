@@ -1,5 +1,6 @@
 package base;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 /**
@@ -33,6 +34,13 @@ public class BaseTest {
 
         double dLost = 0.1 * 0.1;
         System.out.println(dLost); //0.010000000000000002，精度丢失
+
+        BigDecimal bigDecimal = new BigDecimal(0.1);
+        BigDecimal bigDecimalCanShow = new BigDecimal(0.5);//0.5恰好可以用二进制表示2的负一次方就是0.5
+        BigDecimal bigDecimalCorrect = new BigDecimal("0.1");
+        System.out.println(bigDecimal);//0.1000000000000000055511151231257827021181583404541015625
+        System.out.println(bigDecimalCanShow); //0.5
+        System.out.println(bigDecimalCorrect);//0.1
 
         int j = 0;
         int jj;

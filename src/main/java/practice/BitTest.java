@@ -4,7 +4,7 @@ package practice;
  * @author lmc
  * @date 2020/1/8
  */
-public class BItTest {
+public class BitTest {
     private static int execute = 1;
     private static int write = 1 << 1;
     private static int read = 1 << 2;
@@ -13,36 +13,36 @@ public class BItTest {
     private static int newNum = 8;
 
     public static void main(String[] args) {
-        System.out.println(BItTest.canRead(7)); //true 1+2+4
-        System.out.println(BItTest.canRead(2)); //false 2
+        System.out.println(BitTest.canRead(7)); //true 1+2+4
+        System.out.println(BitTest.canRead(2)); //false 2
 
-        System.out.println(BItTest.addWrite(1)); //3
+        System.out.println(BitTest.addWrite(1)); //3
 
-        System.out.println(BItTest.delExecute(7)); //6
+        System.out.println(BitTest.delExecute(7)); //6
 
-        BItTest.swap();
+        BitTest.swap();
         System.out.println(oldNum);
         System.out.println(newNum);
 
-        System.out.println(BItTest.getSingleDog());
+        System.out.println(BitTest.getSingleDog());
 
-        System.out.println(BItTest.setZero(5));
+        System.out.println(BitTest.setZero(5));
 
-        System.out.println(BItTest.isEven(5));
-        System.out.println(BItTest.isEven(6));
+        System.out.println(BitTest.isEven(5));
+        System.out.println(BitTest.isEven(6));
 
     }
 
     static boolean canRead(int verifyNum) {
-        return (BItTest.read & verifyNum) == BItTest.read;
+        return (BitTest.read & verifyNum) == BitTest.read;
     }
 
     static int addWrite(int rawNum) {
-        return BItTest.write | rawNum;
+        return BitTest.write | rawNum;
     }
 
     static int delExecute(int rawNum) {
-        return BItTest.execute ^ rawNum;
+        return BitTest.execute ^ rawNum;
     }
 
     static void swap(){
