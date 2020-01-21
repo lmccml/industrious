@@ -1,4 +1,4 @@
-package enum_type;
+package base;
 
 public enum enum_disassembly {
     SPRING,SUMMER,AUTUMN,WINTER;

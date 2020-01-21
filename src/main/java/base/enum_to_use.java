@@ -1,4 +1,4 @@
-package enum_type;
+package base;
 
 public class enum_to_use {
 
