@@ -6,7 +6,7 @@ import java.util.concurrent.Callable;
  * @author lmc
  * @date 2019/12/24
  */
-public class call_task implements Callable<String> {
+public class CallTask implements Callable<String> {
     @Override
     public String call() throws Exception {
         synchronized (this){

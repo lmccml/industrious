@@ -23,7 +23,7 @@ public class call_back_test implements CallbackFilter {
         if("getConcreteMethodFixedValue".equals(method.getName())){
             return 2;//Callback callbacks[2]
         }
-        return 88;
+        return 0;
     }
 
     public static void main(String[] args) {

@@ -2,7 +2,7 @@ package concurrent;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
-public class interupted_blocked {
+public class InteruptedBlocked {
     public static void main(String[] args) {
         Thread thread_one = new Thread(new Runnable() {
             @Override

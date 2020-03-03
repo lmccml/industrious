@@ -7,7 +7,7 @@ import java.util.concurrent.CyclicBarrier;
     但是CountDownLatch的下一步的动作实施者是主线程，具有不可重复性；
     而CyclicBarrier的下一步动作实施者还是“其他线程”本身，具有往复多次实施动作的特点。
  */
-public class cyclicbarrier_demo {
+public class CyclicBarrierDemo {
     private static CyclicBarrier cyclicBarrier;
 
     static class CyclicBarrierThread extends Thread{

@@ -4,7 +4,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
-public class threadpool_demo {
+public class ThreadPoolDemo {
     public static void main(String[] args) {
         Executor fixed_threadpool = Executors.newFixedThreadPool(3);
         Executor single_thread_executor = Executors.newSingleThreadExecutor();

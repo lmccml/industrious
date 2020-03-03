@@ -2,10 +2,10 @@ package concurrent;
 
 import java.util.concurrent.CountDownLatch;
 
-public class runnable_second implements Runnable {
+public class RunnableSecond implements Runnable {
     private CountDownLatch countDownLatch;
 
-    public runnable_second(CountDownLatch ct){
+    public RunnableSecond(CountDownLatch ct){
         this.countDownLatch = ct;
     }
 

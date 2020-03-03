@@ -1,6 +1,6 @@
 package concurrent;
 
-public class thread_one extends Thread {
+public class ThreadOne extends Thread {
     @Override
     public void run() {
         try {
