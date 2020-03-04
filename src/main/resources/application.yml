@@ -9,4 +9,4 @@ spring:
     multipart:
       max-request-size: 10MB
 server:
-  port: 9001
+  port: 8080
