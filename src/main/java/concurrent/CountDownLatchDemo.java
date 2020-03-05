@@ -11,10 +11,9 @@ ReentrantLock也是使用AQS
 public class CountDownLatchDemo {
 
     public static void main(String[] args) throws InterruptedException {
-        CountDownLatch ct = new CountDownLatch(3);
+        CountDownLatch ct = new CountDownLatch(2);
         ExecutorService es = Executors.newFixedThreadPool(5);
         es.submit(new RunnableFirst(ct));
-        es.submit(new RunnableSecond(ct));
         es.submit(new RunnableSecond(ct));
         ct.await();
         System.out.println("任务处理完了");
