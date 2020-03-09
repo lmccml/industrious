@@ -1,104 +1,89 @@
 package concurrent;
 
-import java.util.Queue;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.locks.Condition;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author lmc
- * @date 2019/12/31
+ * @date 2020/3/5 17:27
  */
 public class ConsumerProducerModelTest {
-    final static CustomAQSLock customAQSLock = new CustomAQSLock();
-    final static Condition emptyCondition = customAQSLock.newCondition();
-    final static Condition fullCondition = customAQSLock.newCondition();
-    final static Queue<Integer> queue = new LinkedBlockingQueue<>();
-    final static int queueSize = 10;
-    static int count = 0;
-
-    public static void main(String[] args) throws Exception{
-        long start = System.currentTimeMillis();
-        Thread producer = new Thread(new Runnable() {
+    private static AtomicInteger num = new AtomicInteger(100);
+    private static volatile boolean flag = true;
+    public static void main(String[] args) throws Exception {
+        ConsumerProducerModelTest consumerProducerModelTest = new ConsumerProducerModelTest();
+        Thread threadProducer = new Thread(new Runnable() {
             @Override
             public void run() {
-                //获取独占锁
-                customAQSLock.lock();
-                try {
-                    while (queue.size() < queueSize) {
-                        queue.add(ThreadLocalRandom.current().nextInt(10));
-                        count++;
-                        if(System.currentTimeMillis() - start > 1000){
-                            System.out.println(count);
-                            return;
-                        }
-                        //唤醒消费者
-                        emptyCondition.signalAll();
-                        while (queue.size() == queueSize) {
-                            fullCondition.await();
-                        }
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } finally {
-                    customAQSLock.unlock();
-                }
+                consumerProducerModelTest.product();
+            }
+        });
+
+        Thread threadProducer2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                consumerProducerModelTest.product();
             }
         });
 
 
-        Thread consumer = new Thread(new Runnable() {
+
+        Thread threadConsumer = new Thread(new Runnable() {
             @Override
             public void run() {
-                //获取独占锁
-                customAQSLock.lock();
-                try {
-                    while (queue.size() > 0) {
-                        Integer integer = queue.poll();
-                        System.out.println(integer);
-                        //唤醒生产者
-                        fullCondition.signalAll();
-                        while (queue.size() == 0) {
-                            emptyCondition.await();
-                        }
-                    }
-                }
-                catch (InterruptedException e) {
-                    e.printStackTrace();
-                } finally {
-                    customAQSLock.unlock();
-                }
+                consumerProducerModelTest.consume();
             }
         });
 
-        Thread consumer2 = new Thread(new Runnable() {
+        Thread threadConsumer2 = new Thread(new Runnable() {
             @Override
             public void run() {
-                //获取独占锁
-                customAQSLock.lock();
-                try {
-                    while (queue.size() > 0) {
-                        Integer integer = queue.poll();
-                        System.out.println(integer);
-                        //唤醒生产者
-                        fullCondition.signalAll();
-                        while (queue.size() == 0) {
-                            emptyCondition.await();
-                        }
-                    }
-                }
-                catch (InterruptedException e) {
-                    e.printStackTrace();
-                } finally {
-                    customAQSLock.unlock();
-                }
+                consumerProducerModelTest.consume();
             }
         });
 
-        //启动线程
-        producer.start();
-        consumer.start();
-        //consumer2.start();
+        threadProducer.start();
+        threadProducer2.start();
+        threadConsumer.start();
+        threadConsumer2.start();
+        Thread.sleep(3000);
+        flag = false;
+        System.out.println("已经工作3秒了，该歇歇了！" + System.currentTimeMillis());
+
     }
 
+    public void product() {
+        while(flag) {
+            synchronized (num) {
+                while (num.get() >= 100) {
+                    try {
+                        num.wait();
+                    } catch (Exception e) {
+                        System.out.println("生产者" + Thread.currentThread().getName() + "被中断了");
+                    }
+                }
+                //默认执行生产操作
+                num.addAndGet(100);
+                //通知消费者消费
+                num.notifyAll();
+            }
+        }
+    }
+
+    public void consume() {
+        while (flag) {
+            synchronized (num) {
+                try {
+                    while (num.get() <= 0) {
+                        num.wait();
+                    }
+                    //消费
+                    num.decrementAndGet();
+                    System.out.println(Thread.currentThread().getName() + "消费了！还剩" + num.get()+ System.currentTimeMillis());
+                    num.notifyAll();
+                } catch (Exception e) {
+                    System.out.println("消费者" + Thread.currentThread().getName() + "被中断了");
+                }
+            }
+        }
+    }
 }
