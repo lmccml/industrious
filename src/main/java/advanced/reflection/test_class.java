@@ -2,7 +2,7 @@ package advanced.reflection;
 
 public class test_class {
     private int id;
-    private String name;
+    public String name;
     private int age;
 
     public test_class() {

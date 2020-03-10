@@ -9,9 +9,7 @@ import java.lang.reflect.Method;
 public class reflect_test {
 
     public static void main(String[] args) throws Exception {
-        //项目内获取Class对象四种方式
         get_class_obj get_class_obj = new get_class_obj();
-        //项目内获取Class对象四种方式
 
         //----------------------获取私有构造方法，并调用--------------------------------
         Class clazz_first = Class.forName("advanced.reflection.test_class");//注意此字符串必须是真实路径，就是带包名的类路径，包名.类名
