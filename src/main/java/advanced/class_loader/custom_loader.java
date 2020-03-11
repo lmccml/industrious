@@ -102,6 +102,13 @@ public class custom_loader extends ClassLoader {
     }
 
 
+    /*
+    资源隔离 热部署 代码保护
+    比较常见的场景就是隔离，比如早些年比较火的Java模块化框架OSGI,把每个Jar包以Bundle的形式运行，每个Bundle有自己的类加载器(不同Bundle可以有相同的类名)，
+    Bundle与Bundle之间起到隔离的效果，同时如果一个Bundle依赖了另一个Bundle的某个类，那这个类的加载就委托给导出该类的BundleClassLoader进行加载；
+    又比如Tomcat容器，每个WebApp有自己的ClassLoader,加载每个WebApp的ClassPath路径上的类，一旦遇到Tomcat自带的Jar包就委托给CommonClassLoader加载；
+    对于公司的一些核心类库，可能会把字节码加密，这样加载类的时候就必须对字节码进行解密，可以通过findClass读取URL中的字节码，然后加密，最后把字节数组交给defineClass()加载。
+     */
     public static void main(String[] args) throws Exception {
         //类的全路径名称，不一定必须在项目中，可以在任意位置
         String name = "practice.advanced.class_loader.test_class";

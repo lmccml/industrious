@@ -6,6 +6,7 @@ import org.springframework.cglib.proxy.FixedValue;
  */
 public class concrete_class_fixed_value implements FixedValue {
 
+    @Override
     public Object loadObject() throws Exception {
 
         System.out.println("ConcreteClassFixedValue loadObject ...");

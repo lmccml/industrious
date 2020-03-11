@@ -21,8 +21,8 @@ public class genericity_test<T> {
 
     //PECS原则
     ////总结：
-    //1. <? extends T> 只能用于方法返回，告诉编译器此返参的类型的最小继承边界为T，T和T的父类都能接收，但是入参类型无法确定，只能接受null的传入
-    //2. <? super T>只能用于限定方法入参，告诉编译器入参只能是T或其子类型，而返参只能用Object类接收
+    //1. <? extends T> 只能用于方法返回，告诉编译器此返参的类型的最小继承边界为T，T或是T的子类，但是入参类型无法确定，只能接受null的传入
+    //2. <? super T>只能用于限定方法入参，告诉编译器入参只能是本类和父类，而返参只能用Object类接收
     //3. ? 既不能用于入参也不能用于返参
     //最后看一下什么是PECS（Producer Extends Consumer Super）原则，已经很好理解了：
     //频繁往外读取内容的，适合用上界Extends。
@@ -32,7 +32,7 @@ public class genericity_test<T> {
 
     public static void main(String[] args) {
 
-        genericity_test<? extends son> genericity_test = new genericity_test<>(new son());
+        genericity_test<? extends father> genericity_test = new genericity_test<>(new son());
 
         //不能存入任何元素
         //genericity_test.set(new father());    //Error  编译错误
@@ -46,10 +46,10 @@ public class genericity_test<T> {
         //son son_one = genericity_test.get();  //Error
 
 
-        genericity_test<? super father> genericity_test_two = new genericity_test<father>(new father());
+        genericity_test<? super son> genericity_test_two = new genericity_test<father>(new father());
 
         //存入元素正常
-        genericity_test_two.set(new father());
+        //genericity_test_two.set(new father());
         genericity_test_two.set(new son());
 
         //读取出来的东西只能存放在Object类里
