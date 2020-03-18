@@ -13,6 +13,7 @@ public class ReadWriteObject {
 
     //读取数据接口
     public void read(){
+        //修改状态是移位操作1<<16
         rwl.readLock().lock();//上读锁，其他线程只能读不能写
         System.out.println(Thread.currentThread().getName() + "准备开始读取数据!");
         try {
@@ -26,6 +27,7 @@ public class ReadWriteObject {
     }
 
     public void write(Object data){
+        //跟ReentrantLock自增一样
         rwl.writeLock().lock();//上写锁，不允许其他线程读也不允许写
         System.out.println(Thread.currentThread().getName() + " 准备写数据!");
         //模拟写数据
