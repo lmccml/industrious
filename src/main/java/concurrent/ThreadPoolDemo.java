@@ -1,11 +1,19 @@
 package concurrent;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.*;
 
 public class ThreadPoolDemo {
     public static void main(String[] args) {
+        RejectedExecutionHandler defaultHandler = new ThreadPoolExecutor.AbortPolicy();
+        ExecutorService executorService = new ThreadPoolExecutor(
+                5,
+                5,
+                0L,
+                TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<Runnable>(),
+                Executors.defaultThreadFactory(),
+                defaultHandler
+                );
         Executor fixed_threadpool = Executors.newFixedThreadPool(3);
         Executor single_thread_executor = Executors.newSingleThreadExecutor();
         Executor work_stealingpool = Executors.newWorkStealingPool(3);
