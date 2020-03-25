@@ -30,8 +30,8 @@ public class FTPClientUtil {
 		Callable<FTPClientUtil> callable = new Callable<FTPClientUtil>() {
 
 			@Override
-			public io.github.viscent.mtpattern.ch6.promise.example.FTPClientUtil call() throws Exception {
-				io.github.viscent.mtpattern.ch6.promise.example.FTPClientUtil self = new io.github.viscent.mtpattern.ch6.promise.example.FTPClientUtil();
+			public FTPClientUtil call() throws Exception {
+				FTPClientUtil self = new FTPClientUtil();
 				self.init(ftpServer, userName, password);
 				return self;
 			}
