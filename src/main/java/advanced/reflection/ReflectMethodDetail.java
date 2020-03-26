@@ -1,5 +1,6 @@
 package advanced.reflection;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
@@ -19,6 +20,13 @@ public class ReflectMethodDetail {
 
         Class testClass3 = Class.forName("advanced.reflection.test_class");
         Class testClass4 = testClassInstance.getClass();
+
+        //2种实例化方式
+        //直接实例化
+        testClass1.newInstance();
+        //反射构造方法区实例化
+        Constructor c= testClass1.getDeclaredConstructor(String.class,String.class,int.class);
+        c.newInstance("test", "test", 1);
 
         //返回本类声明的所有字段，包括非public的， 但不包括父类的
         Field field = testClass1.getDeclaredField("age");

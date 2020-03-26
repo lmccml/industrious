@@ -1,4 +1,4 @@
-package concurrent.assitpackage;
+package concurrent;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
@@ -34,23 +34,18 @@ public class ThreadCreate extends Thread {
         Executors.newFixedThreadPool(1).submit(new Runnable() {
             @Override
             public void run() {
-                System.out.println("我是创建多线程方式4！");
             }
         });
     }
 
     static class ThreadCreateRunnable implements Runnable {
         @Override
-        public void run() {
-            System.out.println("我是创建多线程方式2！");
-        }
+        public void run() { System.out.println("我是创建多线程方式2！"); }
     }
 
     static class ThreadCreateCallable implements Callable<String> {
         @Override
-        public String call() {
-            return "我是创建多线程方式3！";
-        }
+        public String call() { return "我是创建多线程方式3！"; }
     }
 
 

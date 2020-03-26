@@ -1,4 +1,4 @@
-package advanced.custom_annotation;
+package advanced.annotation;
 
 
 import java.lang.annotation.*;
@@ -86,3 +86,12 @@ public @interface custom_annotation_test {
 //     */
 //    TYPE_USE
 //}
+
+//@Documented描述-javadoc
+//@Documented用于描述其它类型的annotation应该被作为被标注的程序成员的公共API，因此可以被例如javadoc此类的工具文档化。
+//
+
+//@Inherited阐述了某个被标注的类型是被继承的
+//@Inherited 元注解是一个标记注解，
+//@Inherited阐述了某个被标注的类型是被继承的。
+//如果一个使用了@Inherited修饰的annotation类型被用于一个class，则这个annotation将被用于该class的子类。

@@ -1,4 +1,4 @@
-package advanced.custom_annotation;
+package advanced.annotation;
 
 import java.lang.annotation.Annotation;
 
