@@ -23,6 +23,6 @@
 
     <bean id = "application_context_aware_test"  class="spring.application_context_aware_test" />
 
-
+    <import resource="applicationContext-jedis.xml"></import>
 
 </beans>
