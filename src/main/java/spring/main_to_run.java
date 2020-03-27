@@ -10,11 +10,26 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @Configuration
-@ComponentScan("practice")
+@ComponentScan("spring")
 public class main_to_run {
     public static void main(String[] args) {
+//        System.out.println("现在开始初始化容器");
+//        ApplicationContext factory = new ClassPathXmlApplicationContext("classpath:/applicationContext.xml");
+//        System.out.println("容器初始化成功");
+//        //得到Preson，并使用
+//        Person person = factory.getBean("person",Person.class);
+//        System.out.println(person);
+//
+//        System.out.println("现在开始关闭容器！");
+//        ((ClassPathXmlApplicationContext)factory).registerShutdownHook();
+
         //xml注册bean
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:/applicationContext.xml");
+        BeanByConstructor beanByConstructor = (BeanByConstructor)ctx.getBean("BeanByConstructor");
+        BeanBySetter beanBySetter = (BeanBySetter)ctx.getBean("BeanBySetter");
+        System.out.println(beanByConstructor.getId());
+        System.out.println(beanBySetter.getName());
+
         java_bean_first java_bean_first = (java_bean_first)ctx.getBean("java_bean_first");
         System.out.println(java_bean_first.getId());
 
