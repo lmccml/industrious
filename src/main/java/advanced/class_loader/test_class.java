@@ -1,6 +1,9 @@
 package advanced.class_loader;
 
-public class test_class {
+import java.io.Serializable;
+
+public class test_class implements Cloneable, Serializable {
+    private static final long serialVersionUID = 1024L;
     private int id;
     private String name;
     private int age;
@@ -43,5 +46,11 @@ public class test_class {
     public void setAge(int age) {
         this.age = age;
     }
+
+    @Override
+    public test_class clone() throws CloneNotSupportedException {
+        return (test_class)super.clone();
+    }
+
 
 }
