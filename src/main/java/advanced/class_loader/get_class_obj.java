@@ -13,10 +13,10 @@ public class get_class_obj {
 
         Class<?> clazz_second = null;
         test_class tc = new test_class();
-        clazz_second =  tc.getClass();
+        clazz_second = tc.getClass(); //会运行static代码块
 
         Class<?> clazz_third = null;
-        clazz_third = Class.forName("advanced.class_loader.test_class");
+        clazz_third = Class.forName("advanced.class_loader.test_class"); //会运行static代码块
 
         //这两个方法都可以用来加载目标类，它们之间有一个小小的区别，那就是 Class.forName() 方法可以获取原生类型的 Class，而 ClassLoader.loadClass() 则会报错。
         Class<?> clazz_fourth = null;

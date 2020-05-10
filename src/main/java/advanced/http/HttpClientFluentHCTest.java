@@ -1,13 +1,11 @@
 package advanced.http;
 
-import com.alibaba.fastjson.JSON;
 import encryptor.MD5Utils;
 import org.apache.http.Consts;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.fluent.Form;
 import org.apache.http.client.fluent.Request;
 
-import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

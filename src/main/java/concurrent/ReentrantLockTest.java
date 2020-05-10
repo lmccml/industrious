@@ -36,6 +36,7 @@ public class ReentrantLockTest {
             mutex.acquire();
             //再次执行会阻塞在这里
             //mutex.acquire();
+            lock.tryLock();//立即返回
             lock.lock();//计数+，成对出现
             lock.lock();
             System.out.println("我是线程" + i);

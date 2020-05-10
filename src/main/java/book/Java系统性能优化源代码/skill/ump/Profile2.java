@@ -1,6 +1,5 @@
 package book.Java系统性能优化源代码.skill.ump;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
